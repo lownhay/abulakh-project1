@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/10/26 17:07:04 by abulakh           #+#    #+#             */
+/*   Updated: 2017/10/26 17:07:04 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	char	*a;
+	size_t	i;
+	size_t	k;
+
+	i = 0;
+	k = 0;
+	a = (char *)s;
+	if (ft_strlen(a) == 0)
+		return (NULL);
+	while (k < ft_strlen(a))
+	{
+		if (a[i] == c)
+		{
+			break ;
+		}
+		i++;
+		if (a[i] == '\0' && c != '\0')
+			return (NULL);
+		k++;
+	}
+	return (&a[i]);
 }

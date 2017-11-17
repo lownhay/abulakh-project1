@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/11/04 18:31:09 by abulakh           #+#    #+#             */
+/*   Updated: 2017/11/04 18:31:10 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	char	*a;
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	a = ft_strnew(len);
+	if (!a)
+		return (NULL);
+	while (i < len)
+	{
+		a[i] = s[start + i];
+		i++;
+	}
+	a[i] = '\0';
+	return (a);
 }

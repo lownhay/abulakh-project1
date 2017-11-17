@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sgrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/11/14 17:00:41 by abulakh           #+#    #+#             */
+/*   Updated: 2017/11/14 17:00:42 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+long	ft_sqrt(long n)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	long	i;
+
+	i = 0;
+	if (n < 0)
+		return (0);
+	while (i * i < n)
+		i++;
+	if (i * i == n)
+		return (i);
+	else
+		return (-1);
 }

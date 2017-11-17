@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/11/04 18:54:29 by abulakh           #+#    #+#             */
+/*   Updated: 2017/11/04 18:54:29 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	char	*a;
+	size_t	i;
+
+	i = 0;
+	if (!s1 || !s2)
+		return (0);
+	a = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	if (!a)
+		return (0);
+	while (s1[i])
+	{
+		a[i] = s1[i];
+		i++;
+	}
+	i = 0;
+	while (s2[i])
+	{
+		a[ft_strlen(s1) + i] = s2[i];
+		i++;
+	}
+	a[ft_strlen(s1) + i] = '\0';
+	return (a);
 }

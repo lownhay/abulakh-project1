@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/11/04 17:49:22 by abulakh           #+#    #+#             */
+/*   Updated: 2017/11/04 17:49:23 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	int		i;
+	char	*a;
+
+	i = -1;
+	if (!s || !f)
+		return (NULL);
+	a = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (a)
+	{
+		while (s[++i])
+		{
+			a[i] = f(s[i]);
+		}
+		a[i] = '\0';
+		return (a);
+	}
+	else
+		return (NULL);
 }

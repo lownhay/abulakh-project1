@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/10/25 22:47:22 by abulakh           #+#    #+#             */
+/*   Updated: 2017/10/25 22:47:23 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
+	unsigned char	*a;
+	unsigned char	*b;
+	size_t			i;
+
+	i = 0;
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
+	while (i < n)
+	{
+		if (a[i] != b[i])
+		{
+			return (a[i] - b[i]);
+		}
+		else
+			i++;
+	}
 	return (0);
 }

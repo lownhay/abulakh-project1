@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/10/25 22:25:16 by abulakh           #+#    #+#             */
+/*   Updated: 2017/10/25 22:25:16 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	unsigned char	*a;
+	size_t			i;
+
+	i = 0;
+	a = (unsigned char *)s;
+	while (i < n)
+	{
+		if (a[i] == (unsigned char)c)
+		{
+			break ;
+		}
+		i++;
+		if (i == n)
+			return (NULL);
+	}
+	return (&a[i]);
 }

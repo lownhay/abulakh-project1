@@ -1,21 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/11/08 17:38:09 by abulakh           #+#    #+#             */
+/*   Updated: 2017/11/08 17:38:10 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+static void	ft_helper(int m, long i, long k)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	char	a;
+
+	if (i < 0)
+	{
+		ft_putchar('-');
+		i = -i;
+	}
+	k /= 10;
+	while (m > 0)
+	{
+		a = (i / k) + '0';
+		i = i % k;
+		k /= 10;
+		m--;
+		ft_putchar(a);
+	}
+}
+
+void		ft_putnbr(int n)
+{
+	long	i;
+	long	k;
+	int		m;
+
+	k = 1;
+	i = n;
+	m = 0;
+	if (i == 0)
+		ft_putchar('0');
+	while (i != 0)
+	{
+		i /= 10;
+		k *= 10;
+		m++;
+	}
+	ft_helper(m, n, k);
 }

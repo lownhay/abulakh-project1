@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/10/25 21:56:11 by abulakh           #+#    #+#             */
+/*   Updated: 2017/10/25 21:56:11 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
-	return (0);
+	unsigned char	*a;
+	unsigned char	*b;
+	size_t			i;
+
+	i = 0;
+	a = (unsigned char *)dst;
+	b = (unsigned char *)src;
+	len--;
+	while ((int)len >= 0 && (a > b))
+	{
+		a[len] = b[len];
+		len--;
+	}
+	len++;
+	while (i < len && (a < b))
+	{
+		a[i] = b[i];
+		i++;
+	}
+	return (a);
 }
