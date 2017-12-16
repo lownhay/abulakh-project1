@@ -16,12 +16,12 @@
 #include <unistd.h>
 #include "libft.h"
 
-int	checkvalid(char **mas, int *ol, int *rl)
+int	checkvalid(char **mas)
 {
 	int i, i1, i2;
 	int k;
 	int n;
-	int m;
+	int m, flag = 0;
 
 	k = 0;
 	n = 0;
@@ -36,23 +36,15 @@ int	checkvalid(char **mas, int *ol, int *rl)
 	{
 		while (mas[i][k] && ft_strlen(mas[i]) == 4)
 		{
-			if (i > 0 && k > 0 && k < 3 && i < 3 && mas[i][k] == '#' && (mas[i + 1][k] == '#' || mas[i][k + 1] == '#' || mas[i][k - 1] == '#' || mas[i - 1][k] == '#'))
+			if (mas[i][k] == '#' && i < 3 && mas[i + 1][k] == '#' && mas[i][k + 1] == '#' && mas[i + 1][k + 1] == '#')
+				flag = 1;
+			if (flag != 1 && mas[i][k] == '#' && ((i < 3 && mas[i + 1][k] == '#') && mas[i][k + 1] == '#'))
+				m += 2;
+			if (flag != 1 && mas[i][k] == '#' && ((i < 3 && mas[i + 1][k] == '#') && mas[i][k + 1] != '#'))
 				m++;
-			if (i == 0 && k > 0  && k < 3 && mas[i][k] == '#' && (mas[i + 1][k] == '#' || mas[i][k + 1] == '#' || mas[i][k - 1] == '#'))
+			if (flag != 1 && mas[i][k] == '#' && ((i < 3 && mas[i + 1][k] != '#') && mas[i][k + 1] == '#'))
 				m++;
-			if (i == 3 && k > 0 && k < 3 && mas[i][k] == '#' && (mas[i][k + 1] == '#' || mas[i][k - 1] == '#' || mas[i - 1][k] == '#'))
-				m++;
-			if (i > 0 && k == 0 && i < 3 && mas[i][k] == '#' && (mas[i + 1][k] == '#' || mas[i][k + 1] == '#' || mas[i - 1][k] == '#'))
-				m++;
-			if (i > 0 && k == 3 && i < 3 && mas[i][k] == '#' && (mas[i + 1][k] == '#' || mas[i][k - 1] == '#' || mas[i - 1][k] == '#'))
-				m++;
-			if (i == 0 && k == 0 && mas[i][k] == '#' && (mas[i + 1][k] == '#' || mas[i][k + 1] == '#'))
-				m++;
-			if (i == 0 && k == 3 && mas[i][k] == '#' && (mas[i + 1][k] == '#' || mas[i][k - 1] == '#'))
-				m++;
-			if (i == 3 && k == 0 && mas[i][k] == '#' && (mas[i - 1][k] == '#' || mas[i][k + 1] == '#'))
-				m++;
-			if (i == 3 && k == 3 && mas[i][k] == '#' && (mas[i - 1][k] == '#' || mas[i][k - 1] == '#'))
+			if (flag != 1 && mas[i][k] == '#' && i == 3 && mas[i][k + 1] == '#')
 				m++;
 			if (mas[i][k] != '.' && mas[i][k] != '#')
 				break ;
@@ -64,6 +56,8 @@ int	checkvalid(char **mas, int *ol, int *rl)
 		k = 0;
 		i++;
 	}
+	if (flag == 1)
+		m = 3;
 	i = 0;
 	while (k < 4)
 	{
@@ -71,11 +65,7 @@ int	checkvalid(char **mas, int *ol, int *rl)
 			i2 = 4;
 		k++;
 	}
-	if (i1 == 4)
-		*ol += 1;
-	if (i2 == 4)
-		*rl += 1;
-	if (m != 4 || n != 16)
+	if (m != 3 || n != 16)
 		return (0);
 	return (m);
 }

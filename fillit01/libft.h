@@ -13,6 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <ctype.h>
 
@@ -87,7 +88,7 @@ long			ft_sqrt(long n);
 long			ft_pow(long n, size_t i);
 int				ft_listsize(t_list *klist);
 int				*ft_strfind(char **k, char *str);
-int				checkvalid(char **mas, int *ol, int *rl);
+int				checkvalid(char **mas);
 char			**ft_strsplit2(char const *s, char c, char jedi);
 
 

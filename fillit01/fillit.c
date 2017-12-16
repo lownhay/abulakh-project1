@@ -24,39 +24,70 @@ int ft_next_power(int c)
 	return (c);
 }
 
-int main(void)
+
+int	*ft_strfindmax(char **k, char *str)
 {
-	int fd;
-	int ret = 0;
-	int i = 0, j = 0, s = 0, ii= 0, ol = 0, rl = 0;
-	int m, k = 0;
-	char buf[600];
-	char **mas;
+	int		*pos;
+	int		i;
+	int		j;
+
+	i = 3;
+	pos = (int *)malloc(sizeof(int) * 2);
+	if (!pos)
+		return (0);
+	pos[1] = 0;
+	pos[0] = 0;
+	while (i >= 0)
+	{
+		j = 3;
+		while (j >= 0)
+		{
+			if (k[i][j] == str[0] && i > pos[0])
+				pos[0] = i;
+			if (k[i][j] == str[0] && j > pos[1])
+				pos[1] = j;
+			j--;
+		}
+		i--;
+	}
+	return (pos);
+}
+
+int	*ft_strfindmin(char **k, char *str)
+{
+	int		*pos;
+	int		i;
+	int		j;
+
+	i = 0;
+	pos = (int *)malloc(sizeof(int) * 2);
+	if (!pos)
+		return (0);
+	pos[1] = 3;
+	pos[0] = 3;
+	while (i <= 3)
+	{
+		j = 0;
+		while (j <= 3)
+		{
+			if (k[i][j] == str[0] && i < pos[0])
+				pos[0] = i;
+			if (k[i][j] == str[0] && j < pos[1])
+				pos[1] = j;
+			j++;
+		}
+		i++;
+	}
+	return (pos);
+}
+
+char **creat_map(int k)
+{
+	int i;
+	int s;
 	char **obl;
 
-	m = 0;
-	fd = open("simple.fillit", O_RDONLY);
-	while ((ret = read(fd, &(buf[m]), 21)))
-	{
-		buf[ret + m] = '\0';
-		mas = ft_strsplit(&(buf[m]), '\n');
-		if (!checkvalid(mas, &ol, &rl))
-		{
-			ft_free_split(mas);
-			ft_putstr("error\n");
-			break ;
-		}
-		else
-			ft_free_split(mas);
-		
-		m = m + ret;
-		j++;
-	}
-	// if ((ol > 0 || rl > 0) && (rl < 5 || ol < 5))
-	// 	k = ft_sqrt(ft_next_power(j * 4)) + 1;
-	// else 
-	k = ft_sqrt(ft_next_power(j * 4));
-	printf("k = %d\n", k);
+	i = 0;
 	obl = (char **)malloc(sizeof(char *) * (k + 1));
 	obl[k] = NULL;
 	while (i < k)
@@ -71,27 +102,75 @@ int main(void)
 		s = 0;
 		while (s < k)
 		{
-			obl[i][s] = s + '0';
+			obl[i][s] = '.';
 			s++;
 		}
 		i++;
 	}
+	return (obl);
+}
+
+int check_position(char **obl, char **mas, int k, int j)
+{
+	int i;
+	int p;
+	int *posmin;
+	int **pos;
+
 	i = 0;
-	while (obl[i])
+	k = 0;
+	obl[0][0] = '0';
+	pos = (int **)malloc(sizeof(int *) * j);
+	while (i < j)
 	{
-		printf("%s\n", obl[i]);
+		pos[i] = ft_strfindmax(&mas[i * 4], "#");
+		posmin = ft_strfindmin(&mas[i * 4], "#");
+		pos[i][0] = pos[i][0] - posmin[0] + 1;
+		pos[i][1] = pos[i][1] - posmin[1] + 1;
 		i++;
 	}
-	i = 0;
-	mas = ft_strsplit2(buf, '\n', '#');
-	while (mas[i])
+	return (1);
+}
+
+int main(void)
+{
+	int fd;
+	int ret = 0;
+	int i = 0, j = 0, s = 0, ii= 0;
+	int m, k = 0;
+	char buf[600];
+	char **mas;
+	char **obl;
+
+	m = 0;
+	fd = open("sample.fillit", O_RDONLY);
+	while ((ret = read(fd, &(buf[m]), 21)))
 	{
-		printf("%s\n", mas[i]);
-		i++;
+		buf[ret + m] = '\0';
+		mas = ft_strsplit(&(buf[m]), '\n');
+		if (!checkvalid(mas))
+		{
+			ft_free_split(mas);
+			ft_putstr("error\n");
+			break ;
+		}
+		else
+			ft_free_split(mas);
+		
+		m = m + ret;
+		j++;
 	}
+	mas = ft_strsplit(buf, '\n');
+	k = ft_sqrt(ft_next_power(j * 4));
+	obl = creat_map(k);
+	while (!check_position(obl, mas, k, j))
+	{
+		k++;
+		ft_free_split(obl);
+		obl = creat_map(k);
+	}
+	ft_free_split(obl);
 	ft_free_split(mas);
-	printf("buf: \n%s", buf);
-	printf("j = %d\n", j);
 	close(fd);
 	return (0);
 }

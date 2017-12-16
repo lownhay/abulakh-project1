@@ -16,18 +16,19 @@ int	*ft_strfind(char **k, char *str)
 {
 	int		*pos;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	if (!k || !str)
+		return (0);
+	pos = (int *)malloc(sizeof(int) * 2);
+	if (!pos)
 		return (0);
 	while (k[i])
 	{
 		if (ft_strstr(k[i], str) != 0)
 		{
-			pos[0] = i + 1;
-			pos[1] = 1 + ft_strlen(k[i]) - ft_strlen(ft_strstr(k[i], str));
+			pos[0] = i;
+			pos[1] = ft_strlen(k[i]) - ft_strlen(ft_strstr(k[i], str));
 			return (pos);
 		}
 		i++;
