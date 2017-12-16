@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
 char	*ft_strnstr(const char *hs, const char *nl, size_t len)
 {
@@ -22,7 +24,7 @@ char	*ft_strnstr(const char *hs, const char *nl, size_t len)
 	i = 0;
 	a = (char *)hs;
 	b = (char *)nl;
-	while (a[i] && i < len)
+	while (i < len && i <= ft_strlen(a))
 	{
 		j = 0;
 		while (a[i] == b[j] && i < len && a[i] && b[j])
@@ -37,4 +39,16 @@ char	*ft_strnstr(const char *hs, const char *nl, size_t len)
 		i++;
 	}
 	return (NULL);
+}
+
+int main(void)
+{
+	char *k;
+	char *m;
+
+	k = "";
+	m = "";
+	printf("strnstr%s\n", strnstr(k, m, 6));
+	printf("ft_strnstr%s\n", ft_strnstr(k, m, 6));
+	return (1);
 }

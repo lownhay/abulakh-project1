@@ -86,5 +86,6 @@ void			ft_free_split(char **k);
 long			ft_sqrt(long n);
 long			ft_pow(long n, size_t i);
 int				ft_listsize(t_list *klist);
+int				*ft_strfind(char **k, char *str);
 
 #endif

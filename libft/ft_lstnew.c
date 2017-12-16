@@ -31,7 +31,7 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	klist = (t_list *)malloc(sizeof(t_list));
 	if (!klist)
 		return (NULL);
-	if (!content_size || !content)
+	if (!content)
 	{
 		klist->content = NULL;
 		klist->content_size = 0;

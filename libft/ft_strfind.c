@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strfind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abulakh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 20:44:33 by abulakh           #+#    #+#             */
-/*   Updated: 2017/11/11 20:44:33 by abulakh          ###   ########.fr       */
+/*   Created: 2017/11/17 17:36:22 by abulakh           #+#    #+#             */
+/*   Updated: 2017/11/17 17:36:23 by abulakh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+int	*ft_strfind(char **k, char *str)
 {
-	printf("atoi = %d\n", atoi("-00000000012345000"));
-	printf("ft_atoi = %d\n", ft_atoi("-000000012345000"));
+	int		*pos;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!k || !str)
+		return (0);
+	while (k[i])
+	{
+		if (ft_strstr(k[i], str) != 0)
+		{
+			pos[0] = i + 1;
+			pos[1] = 1 + ft_strlen(k[i]) - ft_strlen(ft_strstr(k[i], str));
+			return (pos);
+		}
+		i++;
+	}
 	return (0);
 }

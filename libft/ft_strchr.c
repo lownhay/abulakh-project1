@@ -16,23 +16,18 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*a;
 	size_t	i;
-	size_t	k;
 
 	i = 0;
-	k = 0;
 	a = (char *)s;
 	if (ft_strlen(a) == 0)
 		return (NULL);
-	while (k < ft_strlen(a))
+	while (i < ft_strlen(a))
 	{
 		if (a[i] == c)
-		{
 			break ;
-		}
 		i++;
 		if (a[i] == '\0' && c != '\0')
 			return (NULL);
-		k++;
 	}
 	return (&a[i]);
 }

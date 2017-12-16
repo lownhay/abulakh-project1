@@ -63,7 +63,7 @@ static char	**func2(char *l, char **k, char c, int i)
 	return (k);
 }
 
-static char	**func3(char *l, char **k, char c)
+static char	**func3(char *l, char **k, char c, char jedi)
 {
 	int		i;
 	int		p;
@@ -78,7 +78,10 @@ static char	**func3(char *l, char **k, char c)
 			i++;
 		while (l[i] != c && l[i] != '\0')
 		{
-			k[t][p] = l[i];
+			if (l[i] == jedi)
+				k[t][p] = t / 4  + 'A';
+			else
+				k[t][p] = l[i];
 			p++;
 			i++;
 		}
@@ -88,7 +91,7 @@ static char	**func3(char *l, char **k, char c)
 	return (k);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char	**ft_strsplit2(char const *s, char c, char jedi)
 {
 	char	**k;
 	char	*l;
@@ -106,7 +109,7 @@ char		**ft_strsplit(char const *s, char c)
 		ft_free_split(k);
 		return (0);
 	}
-	k = func3(l, k, c);
+	k = func3(l, k, c, jedi);
 	if (!k)
 		return (0);
 	return (k);

@@ -43,7 +43,7 @@ SRCS = ft_memset.c ft_bzero.c \
 		ft_lstmap.c ft_guz.c \
 		ft_sobaka.c ft_free_split.c \
 		ft_sqrt.c ft_pow.c \
-		ft_listsize.c
+		ft_listsize.c ft_strfind.c
 
 OFILES = ft_memset.o ft_bzero.o \
 		ft_memcpy.o ft_memccpy.o \
@@ -76,9 +76,8 @@ OFILES = ft_memset.o ft_bzero.o \
 		ft_lstadd.o ft_lstiter.o \
 		ft_lstmap.o ft_guz.o \
 		ft_sobaka.o ft_free_split.o \
-		ft_sqrt.o ft_pow.o ft_listsize.o
-
-INCLUDE = includes/
+		ft_sqrt.o ft_pow.o ft_listsize.o\
+		ft_strfind.o
 
 .PHONY: all clean fclean re
 
@@ -87,10 +86,9 @@ INCLUDE = includes/
 all: $(NAME)
 
 $(NAME):
-	gcc -I$(INCLUDE) -Wall -Wextra -Werror -c $(SRCS)
+	gcc -I -Wall -Wextra -Werror -c $(SRCS)
 	ar rc $(NAME) $(OFILES)
 	ranlib $(NAME)
-	gcc -I$(INCLUDE) -Wall -Wextra -Werror -L. -lft main.c
 
 clean:
 	rm -f $(OFILES)
