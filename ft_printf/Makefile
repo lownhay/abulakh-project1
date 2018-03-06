@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = ft_printf
+NAME =  libftprintf.a
 
 CC = gcc
 
@@ -18,30 +18,30 @@ CFLAGS = -Wall -Wextra -Werror
 
 HIDDIRS = -I . ft_printf.h
 
-SRC = ft_printf_start.c ./gnltry2/get_next_line.c
+SRC = ft_printf_start.c
 
 RM = rm -f
 
 OBJ = $(patsubst %.c,./%.o,$(SRC))
+
+LIB = ./gnltry2/libft/*.c
+
+OBJLB = ./*.o
 
 MAKE = make
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(MAKE) -C ./gnltry2/libft
-	@$(CC) $(CFLAGS) $(OBJ) -L gnltry2/libft/ -lft -o $(NAME)
-
-./%.o: %.c
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	@gcc -I . -I./gnltry2/libft -Wall -Wextra -Werror -c $(SRCS) $(LIB)
+	@ar rc $(NAME) $(OBJ) $(OBJLB)
+	@ranlib $(NAME)
 
 clean:
-	@$(MAKE) clean -C ./gnltry2/libft
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ) $(OBJLB)
 
 fclean: clean
-	@$(MAKE) fclean -C ./gnltry2/libft
-	@$(RM) $(NAME) alum
+	@$(RM) $(NAME)
 
 re: fclean all
 
