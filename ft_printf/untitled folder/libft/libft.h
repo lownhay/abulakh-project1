@@ -69,7 +69,7 @@ char			*ft_itoa(int n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 void			ft_putendl(char const *s);
-void			ft_putnbr(long long int n);
+int				ft_putnbr(intmax_t n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
@@ -87,5 +87,6 @@ long			ft_sqrt(long n);
 long			ft_pow(long n, size_t i);
 int				ft_listsize(t_list *klist);
 int				*ft_strfind(char **k, char *str);
+char			*ft_itoa_base(uintmax_t num, int base, int xx);
 
 #endif

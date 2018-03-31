@@ -43,7 +43,8 @@ SRCS = ft_memset.c ft_bzero.c \
 		ft_lstmap.c ft_guz.c \
 		ft_sobaka.c ft_free_split.c \
 		ft_sqrt.c ft_pow.c \
-		ft_listsize.c ft_strfind.c
+		ft_listsize.c ft_strfind.c \
+		ft_itoa_base.c
 
 OFILES = ft_memset.o ft_bzero.o \
 		ft_memcpy.o ft_memccpy.o \
@@ -77,7 +78,7 @@ OFILES = ft_memset.o ft_bzero.o \
 		ft_lstmap.o ft_guz.o \
 		ft_sobaka.o ft_free_split.o \
 		ft_sqrt.o ft_pow.o ft_listsize.o\
-		ft_strfind.o
+		ft_strfind.o ft_itoa_base.o
 
 .PHONY: all clean fclean re
 

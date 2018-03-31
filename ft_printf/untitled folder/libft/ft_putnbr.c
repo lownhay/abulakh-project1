@@ -12,42 +12,53 @@
 
 #include "libft.h"
 
-static void	ft_helper(int m, long long int  i, unsigned long long int  k)
+static void	ft_helper(int m, intmax_t  i, unsigned long long int  k, int *p)
 {
+	unsigned long long int l;
 	char	a;
 
 	if (i < 0)
 	{
-		ft_putchar('-');
-		i = -i;
+	//	ft_putchar('-');
+		l = -i;
+	//	(*p)++;
 	}
+	else 
+		l = i;
 	k /= 10;
 	while (m > 0)
 	{
-		a = (i / k) + '0';
-		i = i % k;
+		a = (l / k) + '0';
+		l = l % k;
 		k /= 10;
 		m--;
+		(*p)++;
 		ft_putchar(a);
 	}
 }
 
-void		ft_putnbr(long long int n)
+int		ft_putnbr(intmax_t n)
 {
-	long long int 	i;
+	intmax_t 	i;
 	unsigned long long int 	k;
 	int 	m;
+	int p;
 
 	k = 1;
 	i = n;
 	m = 0;
+	p = 0;
 	if (i == 0)
+	{
+		p++;
 		ft_putchar('0');
+	}
 	while (i != 0)
 	{
 		i /= 10;
 		k *= 10;
 		m++;
 	}
-	ft_helper(m, n, k);
+	ft_helper(m, n, k, &p);
+	return (p);
 }
